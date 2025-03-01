@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Roaster K - Vertical Months</title>
+    <title>Roaster K - 2025</title>
     <style>
+        /* ... (Your existing CSS) ... */
         .container {
             display: flex;
             flex-direction: column;
@@ -39,11 +40,11 @@
         label {
             cursor: pointer;
             padding: 10px 20px;
-            border: 1px solid red; /* Red border */
+            border: 1px solid red;
             margin-bottom: 5px;
             width: 200px;
             text-align: center;
-            color: red; /* Red text */
+            color: red;
         }
 
         #january-radio:checked ~ #january,
@@ -60,12 +61,12 @@
         #december-radio:checked ~ #december {
             display: flex;
         }
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1 class="heading">Roster 2025</h1>
-
         <input type="radio" id="january-radio" name="month">
         <label for="january-radio">January</label>
         <div id="january" class="month-content image-container">
@@ -78,7 +79,7 @@
             <img src="./images/february.jpg" alt="February Image">
         </div>
 
-        <input type="radio" id="march-radio" name="month" checked>
+        <input type="radio" id="march-radio" name="month">
         <label for="march-radio">March</label>
         <div id="march" class="month-content image-container">
             <img src="./images/march.jpg" alt="March Image">
@@ -138,5 +139,22 @@
             <img src="./images/december.jpg" alt="December Image">
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const month = now.getMonth(); // 0-11 (January to December)
+            const monthNames = ["january", "february", "march", "april", "may", "june",
+                                "july", "august", "september", "october", "november", "december"];
+            const currentMonth = monthNames[month];
+            const radio = document.getElementById(currentMonth + "-radio");
+            if (radio) {
+                radio.checked = true;
+                const monthDiv = document.getElementById(currentMonth);
+                if(monthDiv){
+                    monthDiv.style.display = "flex";
+                }
+            }
+        });
+    </script>
 </body>
 </html>
