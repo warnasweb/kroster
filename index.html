@@ -142,18 +142,38 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const now = new Date();
-            const month = now.getMonth(); // 0-11 (January to December)
+            const month = now.getMonth();
             const monthNames = ["january", "february", "march", "april", "may", "june",
                                 "july", "august", "september", "october", "november", "december"];
             const currentMonth = monthNames[month];
             const radio = document.getElementById(currentMonth + "-radio");
             if (radio) {
                 radio.checked = true;
-                const monthDiv = document.getElementById(currentMonth);
-                if(monthDiv){
-                    monthDiv.style.display = "flex";
-                }
             }
+            const monthDiv = document.getElementById(currentMonth);
+            if(monthDiv){
+                monthDiv.style.display = "flex";
+            }
+    
+            // Add event listeners to radio buttons to hide other months
+            const radioButtons = document.querySelectorAll('input[name="month"]');
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const selectedMonth = this.id.replace('-radio', ''); // Get the selected month name
+    
+                    // Hide all month divs
+                    const monthContents = document.querySelectorAll('.month-content');
+                    monthContents.forEach(content => {
+                        content.style.display = 'none';
+                    });
+    
+                    // Show the selected month div
+                    const selectedMonthDiv = document.getElementById(selectedMonth);
+                    if (selectedMonthDiv) {
+                        selectedMonthDiv.style.display = 'flex';
+                    }
+                });
+            });
         });
     </script>
 </body>
